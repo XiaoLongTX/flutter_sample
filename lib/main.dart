@@ -4,6 +4,7 @@ import 'package:flutter_sample/image_sample.dart';
 import 'package:flutter_sample/iphone_theme.dart';
 import 'package:flutter_sample/new_router.dart';
 import 'package:flutter_sample/page_num.dart';
+import 'package:flutter_sample/progress_sample.dart';
 import 'package:flutter_sample/state_sample.dart';
 import 'package:flutter_sample/switch_checkbox_sample.dart';
 import 'package:flutter_sample/tapbox/tapbox_a.dart';
@@ -195,6 +196,17 @@ class MainPage extends StatelessWidget {
               },
               child: Text(
                 'form验证',
+                style: TextStyle(fontSize: 18, color: Colors.teal),
+              ),
+            ),
+            FlatButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ProgressSample();
+                }));
+              },
+              child: Text(
+                '进度条',
                 style: TextStyle(fontSize: 18, color: Colors.teal),
               ),
             ),
