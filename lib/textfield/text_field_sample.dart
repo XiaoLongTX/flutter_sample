@@ -37,10 +37,6 @@ class _TextFieldChildState extends State<_TextFieldChild> {
       extentOffset: _selectionController.text.length,
     );
 
-    FocusNode focusNode1 = new FocusNode();
-    FocusNode focusNode2 = new FocusNode();
-    FocusScopeNode focusScopeNode;
-
     return Column(
       children: <Widget>[
         TextField(
@@ -71,22 +67,57 @@ class _TextFieldChildState extends State<_TextFieldChild> {
           ),
           obscureText: true,
         ),
+      ],
+    );
+  }
+}
+
+class TextFieldSample2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('焦点控制'),
+      ),
+      body: Center(
+        child: _TextFieldChild2(),
+      ),
+    );
+  }
+}
+
+class _TextFieldChild2 extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _TextFieldChildState2();
+  }
+}
+
+class _TextFieldChildState2 extends State<_TextFieldChild2> {
+  FocusNode focusNode1 = new FocusNode();
+  FocusNode focusNode2 = new FocusNode();
+  FocusScopeNode focusScopeNode;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
         TextField(
           autofocus: true,
-          focusNode: focusNode1,
-          decoration: InputDecoration(labelText: 'input1'),
+          focusNode: focusNode1, //关联focusNode1
+          decoration: InputDecoration(labelText: "input1"),
         ),
         TextField(
-          focusNode: focusNode2,
-          decoration: InputDecoration(labelText: 'input2'),
+          focusNode: focusNode2, //关联focusNode2
+          decoration: InputDecoration(labelText: "input2"),
         ),
         Builder(
           builder: (ctx) {
             return Column(
               children: <Widget>[
                 RaisedButton(
+                  child: Text("移动焦点"),
                   onPressed: () {
-                    // 将焦点从第一个TextField移到第二个TextField
+                    //将焦点从第一个TextField移到第二个TextField
                     // 这是一种写法 FocusScope.of(context).requestFocus(focusNode2);
                     // 这是第二种写法
                     if (null == focusScopeNode) {
@@ -94,15 +125,15 @@ class _TextFieldChildState extends State<_TextFieldChild> {
                     }
                     focusScopeNode.requestFocus(focusNode2);
                   },
-                  child: Text('移动焦点'),
                 ),
                 RaisedButton(
+                  child: Text("隐藏键盘"),
                   onPressed: () {
+                    // 当所有编辑框都失去焦点时键盘就会收起
                     focusNode1.unfocus();
                     focusNode2.unfocus();
                   },
-                  child: Text('隐藏键盘'),
-                )
+                ),
               ],
             );
           },

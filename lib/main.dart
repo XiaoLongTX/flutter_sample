@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sample/call_snackbar.dart';
 import 'package:flutter_sample/image_sample.dart';
 import 'package:flutter_sample/iphone_theme.dart';
 import 'package:flutter_sample/new_router.dart';
@@ -8,10 +9,9 @@ import 'package:flutter_sample/switch_checkbox_sample.dart';
 import 'package:flutter_sample/tapbox/tapbox_a.dart';
 import 'package:flutter_sample/tapbox/tapbox_b.dart';
 import 'package:flutter_sample/tapbox/tapbox_c.dart';
-import 'package:flutter_sample/text_field_sample.dart';
+import 'package:flutter_sample/textfield/text_field_sample.dart';
 import 'package:flutter_sample/text_sample.dart';
-
-import 'call_snackbar.dart';
+import 'package:flutter_sample/textfield/textfield_form.dart';
 
 void main() => runApp(MyApp());
 
@@ -173,6 +173,28 @@ class MainPage extends StatelessWidget {
               },
               child: Text(
                 'TextFieldSample',
+                style: TextStyle(fontSize: 18, color: Colors.teal),
+              ),
+            ),
+            FlatButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return TextFieldSample2();
+                }));
+              },
+              child: Text(
+                '焦点控制',
+                style: TextStyle(fontSize: 18, color: Colors.teal),
+              ),
+            ),
+            FlatButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return TextFieldForm();
+                }));
+              },
+              child: Text(
+                'form验证',
                 style: TextStyle(fontSize: 18, color: Colors.teal),
               ),
             ),
